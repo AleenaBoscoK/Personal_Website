@@ -1,5 +1,5 @@
-import Image from "next/image";
 import InvolvementDropdown from "@/components/InvolvementDropdown";
+import PassportStamp from "@/components/PassportStamp";
 import SectionHeading from "@/components/SectionHeading";
 import { journey } from "@/content/site";
 
@@ -119,31 +119,20 @@ export default function Journey() {
                   <p className="font-mono text-xs text-muted">{stop.years}</p>
                 </div>
 
-                {/* Photo, "taped" into the journal */}
-                <figure className="relative mt-2">
-                  <span
-                    aria-hidden="true"
-                    className="absolute -top-2.5 left-1/2 z-10 h-5 w-20 -translate-x-1/2 -rotate-3 bg-[#bcd1f7]/75"
-                  />
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-mist">
-                    {stop.photo ? (
-                      <Image
-                        src={stop.photo}
-                        alt={stop.city}
-                        fill
-                        sizes="(min-width: 1024px) 360px, 100vw"
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-sm text-muted">
-                        [{stop.cityShort} photo]
-                      </div>
-                    )}
-                  </div>
-                  <figcaption className="absolute bottom-3 left-3 rounded-full bg-card px-2.5 py-1 text-xs text-ink">
-                    ● {stop.cityShort}
-                  </figcaption>
-                </figure>
+                {/* Passport page with this stop's entry stamp */}
+                <div
+                  className="group relative mt-2 flex h-52 items-center justify-center overflow-hidden rounded-xl border border-line bg-card"
+                  style={{
+                    backgroundImage:
+                      "repeating-linear-gradient(0deg, transparent 0 21px, rgba(37,99,235,0.06) 21px 22px)",
+                  }}
+                >
+                  <span className="absolute top-3 left-4 font-mono text-[10px] tracking-[0.16em] text-muted">VISAS</span>
+                  <span className="absolute top-3 right-4 font-mono text-[10px] tracking-[0.16em] text-muted">
+                    PAGE {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <PassportStamp code={stop.code} city={stop.cityShort} stamp={stop.stamp} />
+                </div>
 
                 <p className="text-[15px] leading-relaxed text-muted lg:min-h-[3.25rem]">{stop.text}</p>
 

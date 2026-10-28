@@ -1,151 +1,94 @@
-import InvolvementDropdown from "@/components/InvolvementDropdown";
-import PassportStamp from "@/components/PassportStamp";
-import SectionHeading from "@/components/SectionHeading";
-import { journey } from "@/content/site";
+"use client";
 
-// ── Route chart ──────────────────────────────────────────────
-// A small flight chart: real longitudes/latitudes squeezed into
-// a 560×220 box (longitude -90 → 100, latitude 0 → 55).
-const W = 560;
-const H = 220;
-const x = (lon: number) => ((lon + 90) / 190) * W;
-const y = (lat: number) => ((55 - lat) / 55) * (H - 20) + 10;
+import { useEffect, useRef, useState } from "react";
+import type { Stop } from "@/content/site";
 
-const cities = [
-  { code: "JFK", name: "New York", lon: -73.8, lat: 40.6, now: true },
-  { code: "AUH", name: "Abu Dhabi", lon: 54.4, lat: 24.4 },
-  { code: "MAA", name: "Chennai", lon: 80.3, lat: 13.1 },
-];
-const [jfk, auh, maa] = cities.map((c) => ({ ...c, cx: x(c.lon), cy: y(c.lat) }));
+type Props = { code: string; city: string; stamp: Stop["stamp"] };
 
-function RouteChart() {
-  const lons = [-90, -60, -30, 0, 30, 60, 90];
-  const lats = [0, 15, 30, 45];
+// Faint speckle that makes the ink look slightly uneven, like a real stamp.
+const inkMask =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.6 1.55'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E\")";
+
+// One passport stamp. It "presses" onto the page the first time it scrolls into view,
+// and straightens up when you hover the card.
+export default function PassportStamp({ code, city, stamp }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inked, setInked] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInked(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const place = city.toUpperCase();
+
   return (
-    <svg
-      role="img"
-      aria-label="Route: Abu Dhabi to Chennai to New York"
-      viewBox={`0 0 ${W} ${H}`}
-      className="h-auto w-full"
+    <div
+      ref={ref}
+      style={{ "--tilt": `${stamp.tilt}deg`, maskImage: inkMask, WebkitMaskImage: inkMask } as React.CSSProperties}
+      className={`text-accent transition-[rotate,scale,opacity] duration-500 ease-[cubic-bezier(.2,1.5,.4,1)] rotate-(--tilt) group-hover:rotate-0 ${
+        inked ? "scale-100 opacity-90" : "scale-125 opacity-0"
+      }`}
     >
-      {/* graticule: faint latitude / longitude lines, like a navigation chart */}
-      <g stroke="#d5e2f7" strokeWidth="0.75">
-        {lons.map((lon) => (
-          <line key={`lon${lon}`} x1={x(lon)} y1="0" x2={x(lon)} y2={H} />
-        ))}
-        {lats.map((lat) => (
-          <line key={`lat${lat}`} x1="0" y1={y(lat)} x2={W} y2={y(lat)} />
-        ))}
-      </g>
-      <g fontFamily="var(--font-mono)" fontSize="9" fill="#6f87b8">
-        {lats.slice(1).map((lat) => (
-          <text key={`t${lat}`} x="4" y={y(lat) - 4}>{lat}°N</text>
-        ))}
-      </g>
-
-      {/* legs of the journey */}
-      <path
-        d={`M${auh.cx} ${auh.cy} Q ${(auh.cx + maa.cx) / 2} ${auh.cy - 30} ${maa.cx} ${maa.cy}`}
-        fill="none" stroke="var(--color-accent-soft)" strokeWidth="1.5" strokeDasharray="2 6" strokeLinecap="round"
-      />
-      <path
-        d={`M${maa.cx} ${maa.cy} Q ${(maa.cx + jfk.cx) / 2} -70 ${jfk.cx} ${jfk.cy}`}
-        fill="none" stroke="var(--color-accent)" strokeWidth="1.5" strokeDasharray="2 6" strokeLinecap="round"
-      />
-
-      {/* city pins */}
-      {[auh, maa, jfk].map((c) => (
-        <g key={c.code}>
-          {c.now && <circle cx={c.cx} cy={c.cy} r="11" fill="none" stroke="var(--color-accent)" opacity="0.35" />}
-          <circle cx={c.cx} cy={c.cy} r={c.now ? 5.5 : 4.5} fill={c.now ? "var(--color-accent)" : "var(--color-ink)"} />
-          <text
-            x={c.cx} y={c.cy + 24}
-            textAnchor={c.code === "MAA" ? "end" : c.code === "JFK" ? "start" : "middle"}
-            fontFamily="var(--font-mono)" fontSize="12" fill="var(--color-ink)"
-          >
-            {c.code}
+      {stamp.shape === "circle" && (
+        <svg viewBox="0 0 160 160" className="h-[150px] w-[150px]" role="img" aria-label={`Stamp: ${city}, ${stamp.label}`}>
+          <defs>
+            <path id={`arc-${code}`} d="M80 80 m-56 0 a56 56 0 1 1 112 0 a56 56 0 1 1 -112 0" />
+          </defs>
+          <circle cx="80" cy="80" r="70" fill="none" stroke="currentColor" strokeWidth="2.5" />
+          <circle cx="80" cy="80" r="44" fill="none" stroke="currentColor" strokeWidth="1.2" />
+          <text fontFamily="var(--font-mono)" fontSize="9" fill="currentColor">
+            <textPath href={`#arc-${code}`} textLength="346" lengthAdjust="spacing">
+              {`${place} · ${stamp.label} · ${place} · ${stamp.label} · `}
+            </textPath>
           </text>
-          <text
-            x={c.cx} y={c.cy + 38}
-            textAnchor={c.code === "MAA" ? "end" : c.code === "JFK" ? "start" : "middle"}
-            fontSize="11" fill="var(--color-muted)"
-          >
-            {c.name}
+          <text x="80" y="82" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="22" fontWeight="500" fill="currentColor">
+            {code}
           </text>
-        </g>
-      ))}
-    </svg>
-  );
-}
+          <text x="80" y="100" textAnchor="middle" fontFamily="var(--font-mono)" fontSize="9" fill="currentColor">
+            {stamp.date}
+          </text>
+        </svg>
+      )}
 
-// ── Section ─────────────────────────────────────────────────
-export default function Journey() {
-  return (
-    <section id="journey" aria-labelledby="journey-title" className="border-y border-line bg-card/70">
-      <div className="mx-auto flex max-w-6xl flex-col gap-14 px-5 py-20 md:px-12 md:py-24">
-        <div className="flex flex-wrap items-end justify-between gap-10">
-          <div className="flex-[1_1_380px]">
-            <SectionHeading
-              id="journey-title"
-              eyebrow="Education"
-              title="A journey across three cities"
-              intro="From Abu Dhabi to Chennai to New York, each stop shaped how I think and what I build."
-            />
-          </div>
-          <div className="w-full max-w-[540px] flex-[1_1_380px] rounded-2xl border border-line bg-paper/60 p-3">
-            <RouteChart />
+      {stamp.shape === "rect" && (
+        <div role="img" aria-label={`Stamp: ${city}, ${stamp.label}`} className="rounded-lg border-[2.5px] border-current p-[5px]">
+          <div className="flex flex-col items-center gap-1 rounded border border-current px-6 py-3 font-mono">
+            <span className="text-[10px] tracking-[0.2em]">ADMITTED · {stamp.label}</span>
+            <span className="text-[28px] leading-none font-medium">{code}</span>
+            <span className="text-[10px] tracking-[0.14em]">
+              {place} · {stamp.date}
+            </span>
           </div>
         </div>
+      )}
 
-        <div className="relative">
-          {/* the line that joins the three stops (desktop only) */}
-          <div aria-hidden="true" className="absolute inset-x-0 top-[22px] hidden border-t border-dashed border-line-strong lg:block" />
-
-          <ol className="relative grid items-start gap-12 lg:grid-cols-3 lg:gap-8">
-            {journey.map((stop, i) => (
-              <li key={stop.code} className="flex flex-col gap-4">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-wash font-mono text-[11px] text-accent">
-                    {stop.code}
-                  </span>
-                  <span className="bg-card/70 pr-2 font-mono text-[11px] tracking-[0.12em] text-muted">
-                    STOP {String(i + 1).padStart(2, "0")} · {stop.coords}
-                  </span>
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <h3 className="font-display text-2xl font-bold tracking-[-0.02em]">{stop.title}</h3>
-                  <p className="text-[15px] text-ink-soft">{stop.city}</p>
-                  <p className="font-mono text-xs text-muted">{stop.years}</p>
-                </div>
-
-                {/* Passport page with this stop's entry stamp */}
-                <div
-                  className="group relative mt-2 flex h-52 items-center justify-center overflow-hidden rounded-xl border border-line bg-card"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(0deg, transparent 0 21px, rgba(37,99,235,0.06) 21px 22px)",
-                  }}
-                >
-                  <span className="absolute top-3 left-4 font-mono text-[10px] tracking-[0.16em] text-muted">VISAS</span>
-                  <span className="absolute top-3 right-4 font-mono text-[10px] tracking-[0.16em] text-muted">
-                    PAGE {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <PassportStamp code={stop.code} city={stop.cityShort} stamp={stop.stamp} />
-                </div>
-
-                <p className="text-[15px] leading-relaxed text-muted lg:min-h-[3.25rem]">{stop.text}</p>
-
-                <InvolvementDropdown items={stop.involvement} />
-              </li>
-            ))}
-          </ol>
+      {stamp.shape === "oval" && (
+        <div
+          role="img"
+          aria-label={`Stamp: ${city}, ${stamp.label}`}
+          className="flex h-[124px] w-[212px] items-center justify-center rounded-[50%] border-[2.5px] border-current"
+        >
+          <div className="flex h-[106px] w-[194px] flex-col items-center justify-center gap-0.5 rounded-[50%] border border-current font-mono">
+            <span className="text-[9px] tracking-[0.2em]">ENTRY · {stamp.label}</span>
+            <span className="text-[26px] leading-tight font-medium">{code}</span>
+            <span className="text-[9px] tracking-[0.14em]">
+              {place} · {stamp.date}
+            </span>
+          </div>
         </div>
-
-        <p className="-mt-4 self-end font-hand text-[28px] text-accent -rotate-3">
-          Different cities, same curiosity.
-        </p>
-      </div>
-    </section>
+      )}
+    </div>
   );
 }
