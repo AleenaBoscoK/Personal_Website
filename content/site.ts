@@ -42,7 +42,12 @@ export type Stop = {
   years: string;
   text: string;
   involvement: Involvement[]; // shown in the "Leadership & clubs" dropdown
-  photo?: string; // e.g. "/cities/abu-dhabi.jpg" (file goes in public/cities)
+  stamp: {
+    shape: "circle" | "rect" | "oval"; // passport-stamp outline
+    label: string;                     // small text on the stamp
+    date: string;                      // e.g. "2019–2023"
+    tilt: number;                      // rotation in degrees
+  };
 };
 
 export const journey: Stop[] = [
@@ -54,6 +59,7 @@ export const journey: Stop[] = [
     coords: "24.45°N 54.38°E",
     years: "[Year] — [Year]",
     text: "[One line on what this chapter gave you]",
+    stamp: { shape: "circle", label: "SCHOOL", date: "[YR]–[YR]", tilt: -8 },
     involvement: [
       { role: "[Role]", org: "[Club or team]", detail: "[What you did]" },
     ],
@@ -66,6 +72,7 @@ export const journey: Stop[] = [
     coords: "13.08°N 80.27°E",
     years: "[Year] — [Year]",
     text: "B.Tech in Computer Science & Engineering, AI/ML specialization, VIT.",
+    stamp: { shape: "rect", label: "UNDERGRAD", date: "[YR]–[YR]", tilt: 0 },
     involvement: [
       {
         role: "Event Management Head",
@@ -83,6 +90,7 @@ export const journey: Stop[] = [
     coords: "40.71°N 74.01°W",
     years: "[Year] — May 2027",
     text: "M.S. Computer Science, NYU Tandon · GPA 3.889 / 4.0.",
+    stamp: { shape: "oval", label: "M.S. CS · NYU", date: "[YR]–2027", tilt: -4 },
     involvement: [
       { role: "[Role]", org: "[Club or society at NYU]", detail: "[What you did]" },
     ],
