@@ -12,7 +12,7 @@ export default function SectionHeading({ eyebrow, title, intro, id }: Props) {
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">{eyebrow}</p>
       <h2
         id={id}
-        className="font-display text-[clamp(32px,4.2vw,50px)] font-bold leading-[1.08] tracking-[-0.03em]"
+        className="font-display text-[clamp(32px,4.2vw,50px)] font-bold leading-[1.08] tracking-[-0.02em]"
       >
         {title}
       </h2>

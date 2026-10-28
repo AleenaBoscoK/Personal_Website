@@ -1,4 +1,4 @@
-import InvolvementDropdown from "@/components/InvolvementDropdown";
+import Link from "next/link";
 import PassportStamp from "@/components/PassportStamp";
 import SectionHeading from "@/components/SectionHeading";
 import { journey } from "@/content/site";
@@ -12,9 +12,9 @@ const x = (lon: number) => ((lon + 90) / 190) * W;
 const y = (lat: number) => ((55 - lat) / 55) * (H - 20) + 10;
 
 const cities = [
-  { code: "JFK", name: "New York", lon: -73.8, lat: 40.6, now: true },
-  { code: "AUH", name: "Abu Dhabi", lon: 54.4, lat: 24.4 },
-  { code: "MAA", name: "Chennai", lon: 80.3, lat: 13.1 },
+  { name: "New York", lon: -73.8, lat: 40.6, now: true, anchor: "start" },
+  { name: "Abu Dhabi", lon: 54.4, lat: 24.4, anchor: "middle" },
+  { name: "Chennai", lon: 80.3, lat: 13.1, anchor: "end" },
 ];
 const [jfk, auh, maa] = cities.map((c) => ({ ...c, cx: x(c.lon), cy: y(c.lat) }));
 
@@ -55,20 +55,13 @@ function RouteChart() {
 
       {/* city pins */}
       {[auh, maa, jfk].map((c) => (
-        <g key={c.code}>
+        <g key={c.name}>
           {c.now && <circle cx={c.cx} cy={c.cy} r="11" fill="none" stroke="var(--color-accent)" opacity="0.35" />}
           <circle cx={c.cx} cy={c.cy} r={c.now ? 5.5 : 4.5} fill={c.now ? "var(--color-accent)" : "var(--color-ink)"} />
           <text
-            x={c.cx} y={c.cy + 24}
-            textAnchor={c.code === "MAA" ? "end" : c.code === "JFK" ? "start" : "middle"}
+            x={c.cx} y={c.cy + 26}
+            textAnchor={c.anchor as "start" | "middle" | "end"}
             fontFamily="var(--font-mono)" fontSize="12" fill="var(--color-ink)"
-          >
-            {c.code}
-          </text>
-          <text
-            x={c.cx} y={c.cy + 38}
-            textAnchor={c.code === "MAA" ? "end" : c.code === "JFK" ? "start" : "middle"}
-            fontSize="11" fill="var(--color-muted)"
           >
             {c.name}
           </text>
@@ -81,7 +74,7 @@ function RouteChart() {
 // ── Section ─────────────────────────────────────────────────
 export default function Journey() {
   return (
-    <section id="journey" aria-labelledby="journey-title" className="border-y border-line bg-card/70">
+    <section id="journey" data-label="Journey" aria-labelledby="journey-title" className="border-y border-line bg-card/70">
       <div className="mx-auto flex max-w-6xl flex-col gap-14 px-5 py-20 md:px-12 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-10">
           <div className="flex-[1_1_380px]">
@@ -103,10 +96,10 @@ export default function Journey() {
 
           <ol className="relative grid items-start gap-12 lg:grid-cols-3 lg:gap-8">
             {journey.map((stop, i) => (
-              <li key={stop.code} className="flex flex-col gap-4">
+              <li key={stop.id} className="flex flex-col gap-4">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-wash font-mono text-[11px] text-accent">
-                    {stop.code}
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-line-strong bg-wash font-mono text-[13px] text-accent">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="bg-card/70 pr-2 font-mono text-[11px] tracking-[0.12em] text-muted">
                     STOP {String(i + 1).padStart(2, "0")} · {stop.coords}
@@ -131,13 +124,30 @@ export default function Journey() {
                   <span className="absolute top-3 right-4 font-mono text-[10px] tracking-[0.16em] text-muted">
                     PAGE {String(i + 1).padStart(2, "0")}
                   </span>
-                  <PassportStamp code={stop.code} city={stop.cityShort} stamp={stop.stamp} />
+                  <PassportStamp id={stop.id} city={stop.cityShort} stamp={stop.stamp} />
                 </div>
 
-                <p className="text-[15px] leading-relaxed text-muted lg:min-h-[3.25rem]">{stop.text}</p>
+                <div className="flex flex-col gap-1.5 lg:min-h-[6.5rem]">
+                  <p className="text-[15px] font-semibold text-ink">{stop.school}</p>
+                  <p className="text-[15px] leading-snug text-ink-soft">{stop.degree}</p>
+                  <p className="font-mono text-[13px] text-accent">{stop.grade}</p>
+                </div>
 
                 {stop.involvement.length > 0 && (
-                  <InvolvementDropdown items={stop.involvement} label={stop.involvementLabel} />
+                  <Link
+                    href={`/off-the-clock#${stop.id}`}
+                    className="group/link flex min-h-12 items-center justify-between gap-3 rounded-xl border border-line bg-card px-4 text-ink no-underline transition-colors hover:border-accent"
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <span className="text-[13px] font-semibold text-ink-soft">{stop.involvementLink}</span>
+                      <span className="rounded-full bg-wash px-2 py-0.5 font-mono text-[11px] text-accent">
+                        {stop.involvement.length}
+                      </span>
+                    </span>
+                    <span className="font-hand text-lg text-accent transition-transform group-hover/link:translate-x-0.5">
+                      read the journal →
+                    </span>
+                  </Link>
                 )}
               </li>
             ))}

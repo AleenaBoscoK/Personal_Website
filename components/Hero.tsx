@@ -2,7 +2,7 @@ import { profile } from "@/content/site";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
+    <section id="top" data-label="Boarding" className="relative overflow-hidden">
       {/* Journey background: a faint dotted flight path across the hero */}
       <svg
         aria-hidden="true"
@@ -13,7 +13,7 @@ export default function Hero() {
         <path
           d="M-40 420 C 220 140, 420 460, 640 260 S 1000 60, 1260 160"
           fill="none"
-          stroke="#b9c6dc"
+          stroke="#b3c8f0"
           strokeWidth="1.5"
           strokeDasharray="2 10"
           strokeLinecap="round"
@@ -27,7 +27,7 @@ export default function Hero() {
             {profile.status}
           </p>
 
-          <h1 className="font-display text-[clamp(40px,5.2vw,64px)] font-bold leading-[1.05] tracking-[-0.03em]">
+          <h1 className="font-display text-[clamp(40px,5.2vw,64px)] font-bold leading-[1.05] tracking-[-0.02em]">
             {profile.firstName} {profile.lastName}
           </h1>
 
@@ -59,13 +59,12 @@ export default function Hero() {
             [Headshot]
           </div>
 
-          {/* Ticket stub */}
+        {/* Ticket stub */}
           <div className="flex overflow-hidden rounded-xl border border-line bg-card font-mono">
             <div className="flex flex-1 flex-col gap-1 px-3.5 py-3">
               <span className="text-[10px] tracking-[0.14em] text-muted">ROUTE</span>
               <span className="whitespace-nowrap text-sm">
-                {profile.route.slice(0, -1).join(" → ")} →{" "}
-                <span className="text-accent">{profile.route.at(-1)}</span>
+                AUH → MAA → <span className="text-accent">JFK</span>
               </span>
             </div>
             <div className="flex flex-col gap-1 border-l-[1.5px] border-dashed border-line px-3.5 py-3">

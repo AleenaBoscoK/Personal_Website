@@ -1,3 +1,4 @@
+import { GitHubIcon, LinkedInIcon, MailIcon } from "@/components/Icons";
 import { profile } from "@/content/site";
 
 export default function Footer() {
@@ -10,10 +11,16 @@ export default function Footer() {
         <span className="font-mono text-xs tracking-[0.08em]">
           {profile.route.join(" → ")} · {profile.coordinates}
         </span>
-        <span className="flex gap-5">
-          <a href={profile.links.github} className="hover:text-accent">GitHub</a>
-          <a href={profile.links.linkedin} className="hover:text-accent">LinkedIn</a>
-          <a href={`mailto:${profile.email}`} className="hover:text-accent">Email</a>
+        <span className="flex gap-1">
+          <a href={profile.links.github} aria-label="GitHub" className="p-2 hover:text-accent">
+            <GitHubIcon className="h-[18px] w-[18px]" />
+          </a>
+          <a href={profile.links.linkedin} aria-label="LinkedIn" className="p-2 hover:text-accent">
+            <LinkedInIcon className="h-[18px] w-[18px]" />
+          </a>
+          <a href={`mailto:${profile.email}`} aria-label="Email" className="p-2 hover:text-accent">
+            <MailIcon className="h-[18px] w-[18px]" />
+          </a>
         </span>
       </div>
     </footer>

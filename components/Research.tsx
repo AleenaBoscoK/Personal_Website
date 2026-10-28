@@ -32,7 +32,7 @@ function Meter({ label, before, after, max, note }: (typeof research.results)[nu
 export default function Research() {
   const { links } = research;
   return (
-    <section id="research" aria-labelledby="research-title" className="border-y border-line bg-card/70">
+    <section id="research" data-label="Research" aria-labelledby="research-title" className="border-y border-line bg-card/70">
       <div className="mx-auto flex max-w-6xl flex-col gap-12 px-5 py-20 md:px-12 md:py-24">
         <SectionHeading id="research-title" eyebrow="Research" title="What I'm working on now" />
 
@@ -48,16 +48,26 @@ export default function Research() {
                 {research.title}
               </h3>
 
-              <dl className="grid gap-6 md:grid-cols-2">
-                <div className="flex flex-col gap-2">
-                  <dt className="font-mono text-xs tracking-[0.12em] text-accent">THE QUESTION</dt>
-                  <dd className="text-[15px] leading-relaxed text-ink-soft">{research.question}</dd>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <dt className="font-mono text-xs tracking-[0.12em] text-accent">THE APPROACH</dt>
-                  <dd className="text-[15px] leading-relaxed text-ink-soft">{research.approach}</dd>
-                </div>
-              </dl>
+              <div className="flex flex-col gap-2">
+                <p className="font-mono text-xs tracking-[0.12em] text-accent">THE QUESTION</p>
+                <p className="max-w-3xl text-base leading-relaxed text-ink-soft">{research.question}</p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <p className="font-mono text-xs tracking-[0.12em] text-accent">THE APPROACH</p>
+                {/* The pipeline as steps joined by a dotted route */}
+                <ol className="grid gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {research.approach.map((a, i) => (
+                    <li key={a.step} className="flex flex-col gap-2 border-t-2 border-dotted border-line-strong pt-3">
+                      <span className="flex items-baseline gap-2">
+                        <span className="font-mono text-xs text-muted">{i + 1}</span>
+                        <span className="font-display text-lg font-bold text-ink">{a.step}</span>
+                      </span>
+                      <span className="text-[14.5px] leading-relaxed text-ink-soft">{a.text}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
 
               <div className="flex flex-col gap-5 rounded-xl border border-line bg-paper/60 p-5">
                 <p className="font-mono text-xs tracking-[0.12em] text-accent">THE RESULT</p>
