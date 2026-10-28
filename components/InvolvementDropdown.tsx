@@ -3,9 +3,15 @@
 import { useId, useState } from "react";
 import type { Involvement } from "@/content/site";
 
-// A collapsible "Leadership & clubs" panel for one stop on the journey.
+// A collapsible panel (e.g. "Leadership & clubs") for one stop on the journey.
 // "use client" (top line) lets this one component run in the browser so it can open and close.
-export default function InvolvementDropdown({ items }: { items: Involvement[] }) {
+export default function InvolvementDropdown({
+  items,
+  label = "Leadership & clubs",
+}: {
+  items: Involvement[];
+  label?: string;
+}) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
 
@@ -19,7 +25,7 @@ export default function InvolvementDropdown({ items }: { items: Involvement[] })
         className="flex min-h-12 w-full cursor-pointer items-center justify-between gap-3 rounded-xl px-4 text-left"
       >
         <span className="flex items-center gap-2.5">
-          <span className="text-[13px] font-semibold text-ink-soft">Leadership &amp; clubs</span>
+          <span className="text-[13px] font-semibold text-ink-soft">{label}</span>
           <span className="rounded-full bg-wash px-2 py-0.5 font-mono text-[11px] text-accent">
             {items.length}
           </span>

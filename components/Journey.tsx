@@ -136,14 +136,16 @@ export default function Journey() {
 
                 <p className="text-[15px] leading-relaxed text-muted lg:min-h-[3.25rem]">{stop.text}</p>
 
-                <InvolvementDropdown items={stop.involvement} />
+                {stop.involvement.length > 0 && (
+                  <InvolvementDropdown items={stop.involvement} label={stop.involvementLabel} />
+                )}
               </li>
             ))}
           </ol>
         </div>
 
         <p className="-mt-4 self-end font-hand text-[28px] text-accent -rotate-3">
-          Different cities, same curiosity.
+          Different countries, same curiosity.
         </p>
       </div>
     </section>
