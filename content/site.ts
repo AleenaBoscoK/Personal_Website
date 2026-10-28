@@ -27,14 +27,22 @@ export const nav = [
   { label: "Contact", href: "#contact" },
 ];
 
+export type Involvement = {
+  role: string;      // e.g. "Event Management Head"
+  org: string;       // e.g. "Dance Club, VIT"
+  detail?: string;   // one line on what you did (optional)
+};
+
 export type Stop = {
   code: string;
   title: string;
   city: string;
   cityShort: string;
+  coords: string;
   years: string;
   text: string;
-  moments: string[];
+  involvement: Involvement[]; // shown in the "Leadership & clubs" dropdown
+  photo?: string; // e.g. "/cities/abu-dhabi.jpg" (file goes in public/cities)
 };
 
 export const journey: Stop[] = [
@@ -43,21 +51,28 @@ export const journey: Stop[] = [
     title: "School",
     city: "Abu Dhabi, UAE",
     cityShort: "Abu Dhabi",
+    coords: "24.45°N 54.38°E",
     years: "[Year] — [Year]",
     text: "[One line on what this chapter gave you]",
-    moments: ["[Key moment]", "[Key moment]"],
+    involvement: [
+      { role: "[Role]", org: "[Club or team]", detail: "[What you did]" },
+    ],
   },
   {
     code: "MAA",
     title: "Undergraduate",
     city: "Chennai, India",
     cityShort: "Chennai",
+    coords: "13.08°N 80.27°E",
     years: "[Year] — [Year]",
     text: "B.Tech in Computer Science & Engineering, AI/ML specialization, VIT.",
-    moments: [
-      "Two journal publications",
-      "Database Systems teaching assistant",
-      "Dance Club event head, 30+ events",
+    involvement: [
+      {
+        role: "Event Management Head",
+        org: "Dance Club, VIT Chennai",
+        detail: "Organized 30+ events, including a large inter-university competition.",
+      },
+      { role: "[Role]", org: "[Club or society]", detail: "[What you did]" },
     ],
   },
   {
@@ -65,11 +80,11 @@ export const journey: Stop[] = [
     title: "Master's",
     city: "New York, USA",
     cityShort: "New York",
+    coords: "40.71°N 74.01°W",
     years: "[Year] — May 2027",
     text: "M.S. Computer Science, NYU Tandon · GPA 3.889 / 4.0.",
-    moments: [
-      "Coverage-aware RAG research",
-      "Software Engineering & Big Data coursework",
+    involvement: [
+      { role: "[Role]", org: "[Club or society at NYU]", detail: "[What you did]" },
     ],
   },
 ];

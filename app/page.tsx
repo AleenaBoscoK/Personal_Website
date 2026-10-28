@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Journey from "@/components/Journey";
 import Nav from "@/components/Nav";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
+        <Journey />
         {/* Next sections get added here, one at a time */}
       </main>
     </>

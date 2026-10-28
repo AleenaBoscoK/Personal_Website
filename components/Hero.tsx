@@ -13,7 +13,7 @@ export default function Hero() {
         <path
           d="M-40 420 C 220 140, 420 460, 640 260 S 1000 60, 1260 160"
           fill="none"
-          stroke="#c9c3dc"
+          stroke="#b9c6dc"
           strokeWidth="1.5"
           strokeDasharray="2 10"
           strokeLinecap="round"
@@ -27,11 +27,11 @@ export default function Hero() {
             {profile.status}
           </p>
 
-          <h1 className="font-serif text-[clamp(52px,7.4vw,92px)] font-normal leading-[0.98] tracking-[-0.02em]">
+          <h1 className="font-display text-[clamp(40px,5.2vw,64px)] font-bold leading-[1.05] tracking-[-0.03em]">
             {profile.firstName} {profile.lastName}
           </h1>
 
-          <p className="max-w-xl font-serif text-[clamp(21px,2.2vw,27px)] leading-snug text-ink-soft">
+          <p className="max-w-xl font-display text-[clamp(19px,2vw,24px)] font-medium leading-snug tracking-[-0.01em] text-ink-soft">
             {profile.pitch}
           </p>
 
@@ -40,13 +40,13 @@ export default function Hero() {
           <div className="mt-1 flex flex-wrap gap-3">
             <a
               href="#projects"
-              className="inline-flex min-h-12 items-center rounded-full bg-plum px-6 text-[15px] font-medium text-white no-underline hover:bg-plum-dark"
+              className="inline-flex min-h-12 items-center rounded-full bg-accent px-6 text-[15px] font-medium text-white no-underline transition-colors hover:bg-accent-dark"
             >
               View my work
             </a>
             <a
               href="#contact"
-              className="inline-flex min-h-12 items-center rounded-full border border-[#cfcbdb] bg-card px-6 text-[15px] font-medium text-ink no-underline hover:border-plum"
+              className="inline-flex min-h-12 items-center rounded-full border border-line-strong bg-card px-6 text-[15px] font-medium text-ink no-underline transition-colors hover:border-accent"
             >
               Get in touch
             </a>
@@ -55,7 +55,7 @@ export default function Hero() {
 
         <div className="flex w-full max-w-[320px] flex-[1_1_260px] flex-col gap-3.5">
           {/* Swap this box for: <Image src="/headshot.jpg" ... /> once you have the photo */}
-          <div className="flex aspect-[4/5] items-center justify-center rounded-2xl bg-[#e6e3ee] text-sm text-muted">
+          <div className="flex aspect-[4/5] items-center justify-center rounded-2xl bg-mist text-sm text-muted">
             [Headshot]
           </div>
 
@@ -63,9 +63,9 @@ export default function Hero() {
           <div className="flex overflow-hidden rounded-xl border border-line bg-card font-mono">
             <div className="flex flex-1 flex-col gap-1 px-3.5 py-3">
               <span className="text-[10px] tracking-[0.14em] text-muted">ROUTE</span>
-              <span className="text-sm">
+              <span className="whitespace-nowrap text-sm">
                 {profile.route.slice(0, -1).join(" → ")} →{" "}
-                <span className="text-plum">{profile.route.at(-1)}</span>
+                <span className="text-accent">{profile.route.at(-1)}</span>
               </span>
             </div>
             <div className="flex flex-col gap-1 border-l-[1.5px] border-dashed border-line px-3.5 py-3">

@@ -1,18 +1,27 @@
 @import "tailwindcss";
 
-
+/* ── Design tokens ──────────────────────────────────────────
+   Use them in classes like bg-paper, text-ink, text-accent,
+   border-line, font-display, font-mono, font-hand.
+   To re-colour the whole site, change the hex values here. */
 @theme {
-  --color-paper: #f4f3f7;      /* page background */
-  --color-card: #ffffff;       /* cards */
-  --color-wash: #f1eef8;       /* soft lavender fills */
-  --color-ink: #1b1f2e;        /* main text (navy) */
-  --color-ink-soft: #2b3044;
-  --color-muted: #4f5466;      /* secondary text */
-  --color-line: #e2e0e9;       /* borders */
-  --color-plum: #5b4b8a;       /* accent */
-  --color-plum-dark: #4a3c78;
+  /* light parts */
+  --color-paper: #f4f7fd;        /* page background */
+  --color-card: #ffffff;         /* cards */
+  --color-wash: #e6eefe;         /* soft blue fills */
+  --color-mist: #dfe8fa;         /* photo / headshot placeholders */
+  --color-line: #d8e3f6;         /* borders */
+  --color-line-strong: #b8cbee;  /* button borders, dashed lines */
 
-  --font-serif: var(--font-newsreader), Georgia, serif;
+  /* dark parts */
+  --color-ink: #0a1a3a;          /* main text (deep navy) */
+  --color-ink-soft: #1c2d52;
+  --color-muted: #465a80;        /* secondary text */
+  --color-accent: #2563eb;       /* bright blue: buttons, labels */
+  --color-accent-dark: #1d4ed8;  /* hover */
+  --color-accent-soft: #7fa3f2;  /* lighter blue for lines */
+
+  --font-display: var(--font-jakarta), system-ui, sans-serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
   --font-hand: var(--font-caveat), cursive;
@@ -22,19 +31,22 @@ html {
   scroll-behavior: smooth;
 }
 
-
+/* ── Journal paper background ───────────────────────────────
+   Two layers: a very faint grain (like paper) and a light
+   dotted grid (like a field notebook).                     */
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.12 0 0 0 0 0.18 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
-    radial-gradient(circle, #dcd8e6 1px, transparent 1.2px);
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.10 0 0 0 0 0.25 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(circle, #cbd9f2 1px, transparent 1.2px);
   background-size: 160px 160px, 28px 28px;
 }
 
+/* Keyboard focus that's easy to see */
 :focus-visible {
-  outline: 2px solid var(--color-plum);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -42,5 +54,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
   }
 }
