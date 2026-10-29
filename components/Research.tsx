@@ -33,7 +33,7 @@ export default function Research() {
   const { links } = research;
   return (
     <section id="research" data-label="Research" aria-labelledby="research-title" className="border-y border-line bg-card/70">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-5 py-20 md:px-12 md:py-24">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-14 md:gap-12 md:px-12 md:py-24">
         <SectionHeading id="research-title" eyebrow="Research" title="What I'm working on now" />
 
         <div className="flex flex-wrap items-start gap-8">
@@ -43,7 +43,7 @@ export default function Research() {
               <span>{research.collaborators}</span>
             </div>
 
-            <div className="flex flex-col gap-8 p-6 md:p-8">
+            <div className="flex flex-col gap-7 p-5 md:gap-8 md:p-8">
               <h3 className="font-display text-[clamp(24px,2.6vw,32px)] font-bold leading-tight tracking-[-0.02em]">
                 {research.title}
               </h3>
@@ -69,7 +69,7 @@ export default function Research() {
                 </ol>
               </div>
 
-              <div className="flex flex-col gap-5 rounded-xl border border-line bg-paper/60 p-5">
+              <div className="flex flex-col gap-5 rounded-xl border border-line bg-paper/60 p-4 md:p-5">
                 <p className="font-mono text-xs tracking-[0.12em] text-accent">THE RESULT</p>
                 <div className="grid gap-6 md:grid-cols-2">
                   {research.results.map((r) => (

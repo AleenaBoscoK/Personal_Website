@@ -21,7 +21,6 @@ export const profile = {
   },
   route: ["Abu Dhabi", "Chennai", "New York"],
   currentCity: "New York",
-  coordinates: "40.71°N 74.01°W",
 };
 
 // Links in the top menu. "/#journey" works from every page.
@@ -51,7 +50,6 @@ export type Stop = {
   title: string;
   city: string;
   cityShort: string;
-  coords: string;
   years: string;
   school: string; // first line
   degree: string; // second line
@@ -74,7 +72,6 @@ export const journey: Stop[] = [
     title: "School",
     city: "Abu Dhabi, UAE",
     cityShort: "Abu Dhabi",
-    coords: "24.45°N 54.38°E",
     years: "2007 — 2021",
     school: "St. Joseph's School",
     degree: "CBSE, Grades X and XII",
@@ -112,7 +109,6 @@ export const journey: Stop[] = [
     title: "Undergraduate",
     city: "Chennai, India",
     cityShort: "Chennai",
-    coords: "13.08°N 80.27°E",
     years: "2021 — 2025",
     school: "Vellore Institute of Technology",
     degree: "B.Tech, Computer Science & Engineering (AI & ML)",
@@ -157,7 +153,6 @@ export const journey: Stop[] = [
     title: "Master's",
     city: "New York, USA",
     cityShort: "New York",
-    coords: "40.71°N 74.01°W",
     years: "2025 — May 2027",
     school: "NYU Tandon School of Engineering",
     degree: "M.S. Computer Science",

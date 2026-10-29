@@ -20,7 +20,7 @@ export default function Hero() {
         />
       </svg>
 
-      <div className="relative mx-auto flex max-w-6xl flex-wrap items-center gap-12 px-5 py-16 md:px-12 md:py-24">
+      <div className="relative mx-auto flex max-w-6xl flex-wrap items-center gap-8 px-5 py-10 sm:gap-12 sm:py-16 md:px-12 md:py-24">
         <div className="flex min-w-0 flex-[999_1_520px] flex-col gap-5">
           <p className="inline-flex items-center gap-2.5 self-start rounded-full border border-line bg-card px-3.5 py-1.5 text-[13px] text-ink-soft">
             <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#2e8b57]" />
@@ -53,23 +53,24 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="flex w-full max-w-[320px] flex-[1_1_260px] flex-col gap-3.5">
+        {/* On phones: a small headshot beside the ticket. From tablet up: big headshot with the ticket below. */}
+        <div className="flex w-full items-center gap-4 sm:max-w-[320px] sm:flex-[1_1_260px] sm:flex-col sm:items-stretch sm:gap-3.5">
           {/* Swap this box for: <Image src="/headshot.jpg" ... /> once you have the photo */}
-          <div className="flex aspect-[4/5] items-center justify-center rounded-2xl bg-mist text-sm text-muted">
+          <div className="flex aspect-[4/5] w-24 shrink-0 items-center justify-center rounded-2xl bg-mist text-xs text-muted sm:w-auto sm:text-sm">
             [Headshot]
           </div>
 
           {/* Ticket stub */}
-          <div className="flex overflow-hidden rounded-xl border border-line bg-card font-mono">
-            <div className="flex flex-1 flex-col gap-1 px-3.5 py-3">
+          <div className="flex flex-1 overflow-hidden rounded-xl border border-line bg-card font-mono sm:flex-none">
+            <div className="flex flex-1 flex-col gap-1 px-3 py-3 sm:px-3.5">
               <span className="text-[10px] tracking-[0.14em] text-muted">ROUTE</span>
               <span className="whitespace-nowrap text-sm">
                 AUH → MAA → <span className="text-accent">JFK</span>
               </span>
             </div>
-            <div className="flex flex-col gap-1 border-l-[1.5px] border-dashed border-line px-3.5 py-3">
+            <div className="flex flex-col gap-1 border-l-[1.5px] border-dashed border-line px-3 py-3 sm:px-3.5">
               <span className="text-[10px] tracking-[0.14em] text-muted">NOW</span>
-              <span className="text-sm">{profile.currentCity}</span>
+              <span className="text-sm whitespace-nowrap">{profile.currentCity}</span>
             </div>
           </div>
         </div>

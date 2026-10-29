@@ -29,7 +29,7 @@ function Chevron() {
 export default function Experience() {
   return (
     <section id="experience" data-label="Experience" aria-labelledby="experience-title">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-20 md:px-12 md:py-24">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-14 md:px-12 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
           <SectionHeading
             id="experience-title"

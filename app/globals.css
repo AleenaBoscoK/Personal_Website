@@ -47,7 +47,7 @@ html {
 /* Leave room for the sticky nav (and its progress bar) when jumping to a section */
 section[id],
 [id].scroll-target {
-  scroll-margin-top: 140px;
+  scroll-margin-top: 100px;
 }
 @media (min-width: 768px) {
   section[id],

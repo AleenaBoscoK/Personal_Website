@@ -37,11 +37,6 @@ function RouteChart() {
           <line key={`lat${lat}`} x1="0" y1={y(lat)} x2={W} y2={y(lat)} />
         ))}
       </g>
-      <g fontFamily="var(--font-mono)" fontSize="9" fill="#6f87b8">
-        {lats.slice(1).map((lat) => (
-          <text key={`t${lat}`} x="4" y={y(lat) - 4}>{lat}°N</text>
-        ))}
-      </g>
 
       {/* legs of the journey */}
       <path
@@ -75,7 +70,7 @@ function RouteChart() {
 export default function Journey() {
   return (
     <section id="journey" data-label="Journey" aria-labelledby="journey-title" className="border-y border-line bg-card/70">
-      <div className="mx-auto flex max-w-6xl flex-col gap-14 px-5 py-20 md:px-12 md:py-24">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-14 md:gap-14 md:px-12 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-10">
           <div className="flex-[1_1_380px]">
             <SectionHeading
@@ -85,7 +80,7 @@ export default function Journey() {
               intro="From Abu Dhabi to Chennai to New York, each stop shaped how I think and what I build."
             />
           </div>
-          <div className="w-full max-w-[540px] flex-[1_1_380px] rounded-2xl border border-line bg-paper/60 p-3">
+          <div className="hidden w-full max-w-[540px] flex-[1_1_380px] rounded-2xl border border-line bg-paper/60 p-3 sm:block">
             <RouteChart />
           </div>
         </div>
@@ -94,7 +89,7 @@ export default function Journey() {
           {/* the line that joins the three stops (desktop only) */}
           <div aria-hidden="true" className="absolute inset-x-0 top-[22px] hidden border-t border-dashed border-line-strong lg:block" />
 
-          <ol className="relative grid items-start gap-12 lg:grid-cols-3 lg:gap-8">
+          <ol className="relative grid items-start gap-10 sm:gap-12 lg:grid-cols-3 lg:gap-8">
             {journey.map((stop, i) => (
               <li key={stop.id} className="flex flex-col gap-4">
                 <div className="flex items-center gap-3">
@@ -102,7 +97,7 @@ export default function Journey() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="bg-card/70 pr-2 font-mono text-[11px] tracking-[0.12em] text-muted">
-                    STOP {String(i + 1).padStart(2, "0")} · {stop.coords}
+                    STOP {i + 1} OF {journey.length}
                   </span>
                 </div>
 
@@ -114,7 +109,7 @@ export default function Journey() {
 
                 {/* Passport page with this stop's entry stamp */}
                 <div
-                  className="group relative mt-2 flex h-52 items-center justify-center overflow-hidden rounded-xl border border-line bg-card"
+                  className="group relative mt-1 flex h-40 items-center justify-center overflow-hidden rounded-xl border border-line bg-card sm:mt-2 sm:h-52"
                   style={{
                     backgroundImage:
                       "repeating-linear-gradient(0deg, transparent 0 21px, rgba(37,99,235,0.06) 21px 22px)",
@@ -124,7 +119,9 @@ export default function Journey() {
                   <span className="absolute top-3 right-4 font-mono text-[10px] tracking-[0.16em] text-muted">
                     PAGE {String(i + 1).padStart(2, "0")}
                   </span>
-                  <PassportStamp id={stop.id} city={stop.cityShort} stamp={stop.stamp} />
+                  <div className="scale-[0.78] sm:scale-100">
+                    <PassportStamp id={stop.id} city={stop.cityShort} stamp={stop.stamp} />
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5 lg:min-h-[6.5rem]">

@@ -9,7 +9,7 @@ export default function Footer() {
           © 2026 {profile.firstName} {profile.lastName}
         </span>
         <span className="font-mono text-xs tracking-[0.08em]">
-          {profile.route.join(" → ")} · {profile.coordinates}
+          {profile.route.join(" → ")}
         </span>
         <span className="flex gap-1">
           <a href={profile.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 hover:text-accent">

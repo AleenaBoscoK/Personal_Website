@@ -21,7 +21,7 @@ function ArrowLink({ href, children, label }: { href: string; children: React.Re
       href={href} target="_blank" rel="noopener noreferrer"
       aria-label={label}
       onClick={(e) => e.stopPropagation()}
-      className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-dark"
+      className="inline-flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap text-accent hover:text-accent-dark"
     >
       {children}
     </a>
@@ -73,7 +73,7 @@ function Postcard({ p, n }: { p: Project; n: number }) {
               type="button"
               onClick={() => setFlipped(true)}
               aria-label={`Read more about ${p.title}`}
-              className="inline-flex min-h-10 cursor-pointer items-center gap-2 font-hand text-[15px] text-accent hover:text-accent-dark"
+              className="inline-flex min-h-10 cursor-pointer items-center gap-1.5 font-hand text-[14px] whitespace-nowrap text-accent hover:text-accent-dark sm:gap-2 sm:text-[15px]"
             >
               flip for the full story ↻
             </button>
@@ -135,7 +135,7 @@ export default function Projects() {
 
   return (
     <section id="projects" data-label="Projects" aria-labelledby="projects-title">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-20 md:px-12 md:py-24">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-14 md:px-12 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
           <SectionHeading
             id="projects-title"
@@ -146,7 +146,7 @@ export default function Projects() {
           <p className="font-hand text-[20px] text-accent">things I couldn&apos;t stop tinkering with</p>
         </div>
 
-        <div role="group" aria-label="Filter projects" className="flex flex-wrap gap-x-7 gap-y-1 border-b border-line">
+        <div role="group" aria-label="Filter projects" className="-mx-5 flex gap-x-6 overflow-x-auto border-b border-line px-5 sm:mx-0 sm:flex-wrap sm:gap-x-7 sm:gap-y-1 sm:overflow-visible sm:px-0">
           {categories.map((c) => {
             const on = c.id === active;
             const count = c.id === "all" ? projects.length : projects.filter((p) => p.category === c.id).length;
@@ -156,7 +156,7 @@ export default function Projects() {
                 type="button"
                 aria-pressed={on}
                 onClick={() => setActive(c.id)}
-                className={`-mb-px inline-flex min-h-11 cursor-pointer items-center gap-2 border-b-2 text-[15px] transition-colors ${
+                className={`-mb-px inline-flex min-h-11 shrink-0 cursor-pointer items-center gap-2 border-b-2 text-[15px] whitespace-nowrap transition-colors ${
                   on ? "border-ink font-semibold text-ink" : "border-transparent text-muted hover:text-accent"
                 }`}
               >
@@ -167,13 +167,20 @@ export default function Projects() {
           })}
         </div>
 
-        <ul className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Phones: one swipeable row of postcards. Tablets and up: a grid. */}
+        <ul
+          key={active}
+          className="-mx-5 -mt-2 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pt-2 pb-5 sm:mx-0 sm:mt-0 sm:grid sm:grid-cols-2 sm:gap-7 sm:overflow-visible sm:px-0 sm:pt-0 sm:pb-0 lg:grid-cols-3"
+        >
           {shown.map((p) => (
-            <li key={p.title}>
+            <li key={p.title} className="w-[85%] shrink-0 snap-center sm:w-auto">
               <Postcard p={p} n={projects.indexOf(p) + 1} />
             </li>
           ))}
         </ul>
+        {shown.length > 1 && (
+          <p className="-mt-4 font-hand text-[15px] text-accent sm:hidden">swipe for more →</p>
+        )}
       </div>
     </section>
   );

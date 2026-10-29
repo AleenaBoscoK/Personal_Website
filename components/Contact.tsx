@@ -7,7 +7,7 @@ import { profile } from "@/content/site";
 export default function Contact() {
   return (
     <section id="contact" data-label="Contact" aria-labelledby="contact-title" className="border-t border-line bg-card/70">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-20 md:px-12 md:py-24">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-14 md:px-12 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
           <SectionHeading
             id="contact-title"
