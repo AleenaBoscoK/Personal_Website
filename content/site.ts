@@ -97,7 +97,7 @@ export const journey: Stop[] = [
       },
       {
         role: "Delegate of the UAE, UN Women",
-        org: "Model United Nations",
+        org: "Model United Nations, St. Joseph's School",
         dates: "2020",
         story: "Represented the UAE on the UN Women committee and received a special mention for performance.",
         icon: "globe",
@@ -166,7 +166,7 @@ export const journey: Stop[] = [
         role: "Attendee, WE26",
         org: "Society of Women Engineers conference, Boston",
         dates: "Nov 2026",
-        story: "Heading to Boston for the Society of Women Engineers' annual conference. If you're there too, say hi!",
+        story: "Heading to Boston for the Society of Women Engineers' annual conference. If you’re there too, let’s grab a coffee and chat!",
         icon: "ticket",
       },
     ],
