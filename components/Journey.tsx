@@ -144,7 +144,7 @@ export default function Journey() {
                         {stop.involvement.length}
                       </span>
                     </span>
-                    <span className="font-hand text-lg text-accent transition-transform group-hover/link:translate-x-0.5">
+                    <span className="font-hand text-[14px] text-accent transition-transform group-hover/link:translate-x-0.5">
                       read the journal →
                     </span>
                   </Link>
@@ -154,8 +154,8 @@ export default function Journey() {
           </ol>
         </div>
 
-        <p className="-mt-4 self-end font-hand text-[28px] text-accent -rotate-3">
-          Different countries, same curiosity.
+        <p className="-mt-4 self-end font-hand text-[21px] text-accent">
+          Different countries, same curiosity
         </p>
       </div>
     </section>

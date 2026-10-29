@@ -27,7 +27,7 @@ export default function Skills() {
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-20 md:px-12 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
           <SectionHeading id="skills-title" eyebrow="Skills" title="Technical skills" />
-          <p className="font-hand text-[26px] text-accent -rotate-2">travel light, pack the right tools.</p>
+          <p className="font-hand text-[20px] text-accent">travel light, pack the right tools</p>
         </div>
 
         <div className="grid gap-x-10 gap-y-8 rounded-sm bg-card bg-[linear-gradient(90deg,transparent_0_22px,#f3b8b8_22px_23px,transparent_23px)] py-8 pr-6 pl-10 shadow-[0_1px_0_var(--color-line),0_18px_40px_rgba(10,26,58,0.06)] sm:grid-cols-2 md:bg-[linear-gradient(90deg,transparent_0_34px,#f3b8b8_34px_35px,transparent_35px)] md:pr-10 md:pl-16 lg:grid-cols-4">

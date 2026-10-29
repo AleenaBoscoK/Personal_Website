@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Footer from "@/components/Footer";
 import { JournalIcon } from "@/components/Icons";
 import Nav from "@/components/Nav";
@@ -7,34 +6,51 @@ import { journey, profile, type Involvement } from "@/content/site";
 
 export const metadata: Metadata = {
   title: `Off the clock — ${profile.firstName} ${profile.lastName}`,
-  description: "Clubs, leadership and life outside work, as pages from a travel journal.",
+  description: "Clubs, leadership and life outside work, as postcards from three cities.",
 };
 
-// A taped-in photo. Until you add a photo (photo: "/journal/name.jpg"), it shows a line drawing.
-function Snapshot({ item, tilt }: { item: Involvement; tilt: number }) {
+// One activity, written like the back of a postcard: the story on the left,
+// and the "address" side (role, club, city, dates) with a stamp on the right.
+function Postcard({ item, city, tilt }: { item: Involvement; city: string; tilt: number }) {
   return (
-    <figure className="relative w-full max-w-[340px] shrink-0" style={{ rotate: `${tilt}deg` }}>
-      <span
+    <article
+      className="relative w-full max-w-3xl overflow-hidden rounded-md bg-[#fffdf8] shadow-[0_2px_0_var(--color-line),0_16px_34px_rgba(10,26,58,0.08)]"
+      style={{ rotate: `${tilt}deg` }}
+    >
+      {/* airmail stripe along the top edge */}
+      <div
         aria-hidden="true"
-        className="absolute -top-2.5 left-1/2 z-10 h-6 w-24 -translate-x-1/2 -rotate-3 bg-[#bcd1f7]/80"
+        className="h-1.5 bg-[repeating-linear-gradient(135deg,#2563eb_0_10px,transparent_10px_16px,#f19a9a_16px_26px,transparent_26px_32px)]"
       />
-      <div className="bg-card p-3 pb-12 shadow-[0_16px_34px_rgba(10,26,58,0.1)]">
-        <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-[linear-gradient(160deg,#e6eefe,#d3e0f8)] text-accent">
-          {item.photo ? (
-            <Image src={item.photo} alt={item.caption ?? item.role} fill sizes="340px" className="object-cover" />
-          ) : (
-            <JournalIcon name={item.icon} className="h-20 w-20 opacity-75" />
-          )}
+      <div className="grid gap-5 p-6 md:grid-cols-[1.15fr_1fr] md:gap-0 md:p-7">
+        {/* the message */}
+        <p className="order-2 text-base leading-relaxed text-ink-soft md:order-1 md:pr-7">{item.story}</p>
+
+        {/* the address side */}
+        <div className="order-1 flex flex-col gap-3 md:order-2 md:border-l md:border-line-strong md:pl-7">
+          <div className="flex items-start justify-between gap-4">
+            <span className="font-hand text-[15px] text-accent">
+              {city}
+              {item.dates && ` · ${item.dates}`}
+            </span>
+            <span
+              aria-hidden="true"
+              className="flex h-[68px] w-[58px] shrink-0 rotate-3 items-center justify-center rounded-[3px] border-2 border-dashed border-line-strong bg-wash text-accent"
+            >
+              <JournalIcon name={item.icon} className="h-9 w-9" />
+            </span>
+          </div>
+          <h3 className="border-b border-line pb-2 font-display text-[20px] leading-snug font-bold tracking-[-0.01em] text-ink">
+            {item.role}
+          </h3>
+          <p className="border-b border-line pb-2 text-[15px] text-muted">{item.org}</p>
         </div>
-        {item.caption && (
-          <figcaption className="absolute bottom-2.5 left-5 font-hand text-[22px] text-ink-soft">{item.caption}</figcaption>
-        )}
       </div>
-    </figure>
+    </article>
   );
 }
 
-// Where each chapter's entries start in the overall count, so photos keep alternating sides.
+// Where each chapter's entries start in the overall count, so postcards keep alternating sides.
 const starts = journey.map((_, i) => journey.slice(0, i).reduce((n, s) => n + s.involvement.length, 0));
 
 export default function OffTheClock() {
@@ -61,12 +77,12 @@ export default function OffTheClock() {
           <div className="relative mx-auto flex max-w-6xl flex-col gap-5 px-5 py-16 md:px-12 md:py-24">
             <p className="text-xs font-semibold tracking-[0.16em] text-accent uppercase">Off the clock</p>
             <h1 className="max-w-3xl font-display text-[clamp(36px,5vw,58px)] leading-[1.05] font-bold tracking-[-0.02em]">
-              Pages from my travel journal
+              Postcards from three cities
             </h1>
             <p className="max-w-xl text-[17px] leading-relaxed text-muted">
               The clubs, teams and stages that taught me to lead, organise and work with people, one city at a time.
             </p>
-            <p className="font-hand text-[28px] text-accent -rotate-2 self-start">the parts that don&apos;t fit on a résumé.</p>
+            <p className="font-hand text-[21px] text-accent self-start">the parts that don&apos;t fit on a résumé</p>
             <nav aria-label="Chapters" className="mt-2 flex flex-wrap gap-3">
               {journey.map((stop, i) => (
                 <a
@@ -103,29 +119,15 @@ export default function OffTheClock() {
                     {stop.chapter}
                   </h2>
                 </div>
-                {stop.note && <p className="font-hand text-[26px] text-accent -rotate-2">{stop.note}</p>}
+                {stop.note && <p className="font-hand text-[20px] text-accent">{stop.note}</p>}
               </header>
 
-              <ol className="flex flex-col gap-16 md:gap-20">
+              <ol className="flex flex-col gap-10 md:gap-12">
                 {stop.involvement.map((item, j) => {
                   const left = (starts[i] + j) % 2 === 0;
                   return (
-                    <li
-                      key={item.role + item.dates}
-                      className={`flex flex-col items-center gap-8 md:gap-14 ${left ? "md:flex-row" : "md:flex-row-reverse"}`}
-                    >
-                      <Snapshot item={item} tilt={left ? -2 : 2} />
-                      <div className="flex w-full flex-col gap-2.5">
-                        <p className="font-mono text-xs tracking-[0.12em] text-accent">
-                          {stop.cityShort.toUpperCase()}
-                          {item.dates && ` · ${item.dates}`}
-                        </p>
-                        <h3 className="font-display text-[clamp(22px,2.6vw,30px)] leading-tight font-bold tracking-[-0.02em]">
-                          {item.role}
-                        </h3>
-                        <p className="text-[15px] text-muted">{item.org}</p>
-                        {item.story && <p className="max-w-xl text-base leading-relaxed text-ink-soft">{item.story}</p>}
-                      </div>
+                    <li key={item.role} className={`flex ${left ? "justify-start" : "justify-end"}`}>
+                      <Postcard item={item} city={stop.cityShort} tilt={left ? -0.6 : 0.6} />
                     </li>
                   );
                 })}

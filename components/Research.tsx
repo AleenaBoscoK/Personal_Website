@@ -88,15 +88,15 @@ export default function Research() {
                   ))}
                 </div>
                 <div className="flex gap-5 text-sm font-medium">
-                  {links.poster && <a href={links.poster} className="text-accent hover:text-accent-dark">Poster ↗</a>}
-                  {links.code && <a href={links.code} className="text-accent hover:text-accent-dark">Code ↗</a>}
+                  {links.poster && <a href={links.poster} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-dark">Poster ↗</a>}
+                  {links.code && <a href={links.code} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent-dark">Code ↗</a>}
                 </div>
               </div>
             </div>
           </article>
 
           <aside className="flex-[1_1_200px] lg:pt-24">
-            <p className="max-w-[240px] -rotate-2 font-hand text-[26px] leading-tight text-accent">{research.margin}</p>
+            <p className="max-w-[240px] font-hand text-[20px] leading-tight text-accent">{research.margin}</p>
           </aside>
         </div>
       </div>

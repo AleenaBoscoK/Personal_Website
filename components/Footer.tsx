@@ -12,10 +12,10 @@ export default function Footer() {
           {profile.route.join(" → ")} · {profile.coordinates}
         </span>
         <span className="flex gap-1">
-          <a href={profile.links.github} aria-label="GitHub" className="p-2 hover:text-accent">
+          <a href={profile.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-2 hover:text-accent">
             <GitHubIcon className="h-[18px] w-[18px]" />
           </a>
-          <a href={profile.links.linkedin} aria-label="LinkedIn" className="p-2 hover:text-accent">
+          <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-2 hover:text-accent">
             <LinkedInIcon className="h-[18px] w-[18px]" />
           </a>
           <a href={`mailto:${profile.email}`} aria-label="Email" className="p-2 hover:text-accent">

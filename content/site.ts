@@ -43,9 +43,7 @@ export type Involvement = {
   org: string; // e.g. "Dance Club, VIT Chennai"
   dates?: string; // e.g. "2023 – 2024" (leave out to hide)
   story?: string; // a few lines in your own words
-  icon?: "flag" | "masks" | "globe" | "dancer" | "dancers" | "spotlight" | "mentor" | "code" | "ticket"; // shown until you add a photo
-  photo?: string; // e.g. "/journal/xemius.jpg" (put the file in public/journal/)
-  caption?: string; // handwritten caption under the photo
+  icon?: "flag" | "masks" | "globe" | "dancer" | "dancers" | "spotlight" | "mentor" | "code" | "ticket"; // the picture on the postcard's stamp
 };
 
 export type Stop = {
@@ -82,7 +80,7 @@ export const journey: Stop[] = [
     degree: "CBSE, Grades X and XII",
     grade: "95.2%, school topper in mathematics",
     chapter: "Where it all started",
-    note: "first stage, first team, first time leading one.",
+    note: "first stage, first team, first time leading one",
     involvementLink: "Clubs & leadership",
     stamp: { shape: "circle", label: "SCHOOL", date: "2007–2021", tilt: -8 },
     involvement: [
@@ -92,7 +90,6 @@ export const journey: Stop[] = [
         dates: "2017 – 2019",
         story: "Led the house through inter-house events and trained the team for the sports-day march-past.",
         icon: "flag",
-        caption: "Bluebell House",
       },
       {
         role: "Cultural Secretary and Assistant Cultural Secretary",
@@ -100,7 +97,6 @@ export const journey: Stop[] = [
         dates: "2019 – 2021",
         story: "Ran cultural programmes and competitions, and helped bring dance and music classes into the school.",
         icon: "masks",
-        caption: "cultural programmes",
       },
       {
         role: "Delegate of the UAE, UN Women",
@@ -108,7 +104,6 @@ export const journey: Stop[] = [
         dates: "2020",
         story: "Represented the UAE on the UN Women committee and received a special mention for performance.",
         icon: "globe",
-        caption: "MUN, 2020",
       },
     ],
   },
@@ -123,7 +118,7 @@ export const journey: Stop[] = [
     degree: "B.Tech, Computer Science & Engineering (AI & ML)",
     grade: "CGPA 9.13 / 10",
     chapter: "Learning to run the show",
-    note: "on stage and behind the scenes.",
+    note: "on stage and behind the scenes",
     involvementLink: "Clubs & leadership",
     stamp: { shape: "rect", label: "B.TECH · CSE", date: "2021–2025", tilt: 5 },
     involvement: [
@@ -133,7 +128,6 @@ export const journey: Stop[] = [
         dates: "2023 – 2024",
         story: "Led around 30 events and an inter-university competition with dance teams from 20 universities.",
         icon: "spotlight",
-        caption: "Dance Club events",
       },
       {
         role: "Advisory Member",
@@ -141,7 +135,6 @@ export const journey: Stop[] = [
         dates: "2024 – 2025",
         story: "Mentored the next team and guided their event planning.",
         icon: "mentor",
-        caption: "passing it on",
       },
       {
         role: "Team Xemius Member",
@@ -149,7 +142,6 @@ export const journey: Stop[] = [
         dates: "2021 – 2024",
         story: "Danced with the university's western dance crew through three years of shows and competitions.",
         icon: "dancers",
-        caption: "Team Xemius",
       },
       {
         role: "Management Team Member",
@@ -157,7 +149,6 @@ export const journey: Stop[] = [
         dates: "2023 – 2024",
         story: "Planned technical events including GDSC WOW Chennai and a FOSS open-source event.",
         icon: "code",
-        caption: "GDSC WOW Chennai",
       },
     ],
   },
@@ -172,7 +163,7 @@ export const journey: Stop[] = [
     degree: "M.S. Computer Science",
     grade: "GPA 3.89 / 4.0",
     chapter: "The next chapter",
-    note: "still being written.",
+    note: "still being written",
     involvementLink: "Conferences",
     stamp: { shape: "oval", label: "M.S. CS · NYU", date: "2025–2027", tilt: -4 },
     involvement: [
@@ -180,9 +171,8 @@ export const journey: Stop[] = [
         role: "Attendee, WE26",
         org: "Society of Women Engineers conference, Boston",
         dates: "Nov 2026",
-        story: "Heading to Boston for the Society of Women Engineers' annual conference. If you're there too, say hi.",
+        story: "Heading to Boston for the Society of Women Engineers' annual conference. If you're there too, say hi!",
         icon: "ticket",
-        caption: "WE26, Boston",
       },
     ],
   },
@@ -465,5 +455,5 @@ export const departures = [
   { when: "2027", to: "SOFTWARE ENGINEER", status: "OPEN" },
   { when: "2027", to: "ML / AI ENGINEER", status: "OPEN" },
   { when: "NOV", to: "WE26 · BOSTON", status: "SAY HI" },
-  { when: "NOW", to: "COFFEE CHAT", status: "ANYTIME" },
+  { when: "NOW", to: "COFFEE CHAT", status: "LET'S CONNECT" },
 ];

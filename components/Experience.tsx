@@ -37,7 +37,7 @@ export default function Experience() {
             title="Experience logbook"
             intro="Research, industry and teaching across three countries, most recent first. Open any entry for the details."
           />
-          <p className="font-hand text-[26px] text-accent -rotate-2">every stop taught me something new.</p>
+          <p className="font-hand text-[20px] text-accent">every stop taught me something new</p>
         </div>
 
         {/* The notebook page: white paper with a red margin line */}

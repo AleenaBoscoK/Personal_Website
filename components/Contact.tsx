@@ -15,14 +15,14 @@ export default function Contact() {
             title="Next stop: your team?"
             intro="I'm looking for software, ML and AI roles starting after I graduate in May 2027. If something here caught your eye, I'd love to hear from you."
           />
-          <p className="font-hand text-[26px] text-accent -rotate-2">always up for a coffee chat.</p>
+          <p className="font-hand text-[20px] text-accent">always up for a coffee chat</p>
         </div>
 
         <DepartureBoard />
 
         <div className="flex flex-wrap items-center gap-3">
           <a
-            href={profile.links.linkedin}
+            href={profile.links.linkedin} target="_blank" rel="noopener noreferrer"
             className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-accent px-6 text-[15px] font-medium text-white no-underline transition-colors hover:bg-accent-dark"
           >
             <LinkedInIcon />
@@ -30,13 +30,13 @@ export default function Contact() {
           </a>
           <CopyEmail email={profile.email} />
           <a
-            href={profile.links.github}
+            href={profile.links.github} target="_blank" rel="noopener noreferrer"
             className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-line-strong bg-card px-5 text-[15px] font-medium text-ink no-underline transition-colors hover:border-accent"
           >
             <GitHubIcon />
             GitHub
           </a>
-          <a href={profile.links.resume} className="inline-flex min-h-12 items-center gap-2 px-3 text-[15px] font-medium text-ink hover:text-accent">
+          <a href={profile.links.resume} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 px-3 text-[15px] font-medium text-ink hover:text-accent">
             <DocIcon />
             Download résumé
           </a>

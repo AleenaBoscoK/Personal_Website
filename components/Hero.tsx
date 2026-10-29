@@ -59,7 +59,7 @@ export default function Hero() {
             [Headshot]
           </div>
 
-        {/* Ticket stub */}
+          {/* Ticket stub */}
           <div className="flex overflow-hidden rounded-xl border border-line bg-card font-mono">
             <div className="flex flex-1 flex-col gap-1 px-3.5 py-3">
               <span className="text-[10px] tracking-[0.14em] text-muted">ROUTE</span>

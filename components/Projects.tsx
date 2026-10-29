@@ -18,7 +18,7 @@ function postmark(when: string) {
 function ArrowLink({ href, children, label }: { href: string; children: React.ReactNode; label: string }) {
   return (
     <a
-      href={href}
+      href={href} target="_blank" rel="noopener noreferrer"
       aria-label={label}
       onClick={(e) => e.stopPropagation()}
       className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-dark"
@@ -73,7 +73,7 @@ function Postcard({ p, n }: { p: Project; n: number }) {
               type="button"
               onClick={() => setFlipped(true)}
               aria-label={`Read more about ${p.title}`}
-              className="inline-flex min-h-10 cursor-pointer items-center gap-2 font-hand text-[21px] text-accent hover:text-accent-dark"
+              className="inline-flex min-h-10 cursor-pointer items-center gap-2 font-hand text-[15px] text-accent hover:text-accent-dark"
             >
               flip for the full story ↻
             </button>
@@ -97,7 +97,7 @@ function Postcard({ p, n }: { p: Project; n: number }) {
           inert={!flipped}
           className="postcard-back flex min-h-[330px] flex-col gap-4 rounded-md bg-[#fffdf8] p-6 shadow-[0_2px_0_var(--color-line),0_16px_34px_rgba(10,26,58,0.08)]"
         >
-          <p className="font-hand text-[22px] leading-none text-accent">
+          <p className="font-hand text-[17px] leading-none text-accent">
             {p.title}, {p.when}
           </p>
           <p className="text-[14.5px] leading-relaxed text-ink-soft">{p.description}</p>
@@ -105,7 +105,7 @@ function Postcard({ p, n }: { p: Project; n: number }) {
             <button
               type="button"
               onClick={() => setFlipped(false)}
-              className="inline-flex min-h-10 cursor-pointer items-center font-hand text-[21px] text-accent hover:text-accent-dark"
+              className="inline-flex min-h-10 cursor-pointer items-center font-hand text-[15px] text-accent hover:text-accent-dark"
             >
               ↺ flip back
             </button>
@@ -143,7 +143,7 @@ export default function Projects() {
             title="Postcards from my projects"
             intro="The essentials are on the front. Flip a card for the full story."
           />
-          <p className="font-hand text-[26px] text-accent -rotate-2">things I couldn&apos;t stop tinkering with.</p>
+          <p className="font-hand text-[20px] text-accent">things I couldn&apos;t stop tinkering with</p>
         </div>
 
         <div role="group" aria-label="Filter projects" className="flex flex-wrap gap-x-7 gap-y-1 border-b border-line">

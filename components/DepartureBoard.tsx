@@ -3,8 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { departures } from "@/content/site";
 
-const WIDTHS = { when: 4, to: 17, status: 7 };
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789·/";
+// Each column is as wide as its longest entry in content/site.ts.
+const longest = (key: "when" | "to" | "status") => Math.max(...departures.map((d) => d[key].length));
+const WIDTHS = { when: longest("when"), to: longest("to"), status: longest("status") };
+const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789·/'";
 const pad = (s: string, n: number) => s.toUpperCase().padEnd(n, " ").slice(0, n).split("");
 
 // Airport-style split-flap board. When it scrolls into view, every letter flips
@@ -62,14 +64,14 @@ export default function DepartureBoard() {
       <div aria-hidden="true" className="hidden overflow-x-auto sm:block">
         <div className="flex min-w-max flex-col gap-1.5">
           <div className="flex gap-6 pb-2 font-mono text-[11px] tracking-[0.14em] text-[#8ea3cc]">
-            <span className="w-[100px]">WHEN</span>
-            <span className="w-[426px]">DESTINATION</span>
+            <span style={{ width: WIDTHS.when * 25 }}>WHEN</span>
+            <span style={{ width: WIDTHS.to * 25 }}>DESTINATION</span>
             <span>STATUS</span>
           </div>
           {departures.map((d, r) => (
             <div key={d.to} className="flex gap-6">
-              <span className="flex w-[100px] gap-[3px]">{pad(d.when, WIDTHS.when).map((c, i) => cell(c, i, r, "text-white"))}</span>
-              <span className="flex w-[426px] gap-[3px]">
+              <span className="flex gap-[3px]" style={{ width: WIDTHS.when * 25 }}>{pad(d.when, WIDTHS.when).map((c, i) => cell(c, i, r, "text-white"))}</span>
+              <span className="flex gap-[3px]" style={{ width: WIDTHS.to * 25 }}>
                 {pad(d.to, WIDTHS.to).map((c, i) => cell(c, i + WIDTHS.when, r, "text-white"))}
               </span>
               <span className="flex gap-[3px]">

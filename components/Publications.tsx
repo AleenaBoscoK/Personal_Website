@@ -8,7 +8,7 @@ export default function Publications() {
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 py-20 md:px-12 md:py-24">
         <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
           <SectionHeading id="publications-title" eyebrow="Publications" title="Published work" />
-          <p className="font-hand text-[26px] text-accent -rotate-2">ideas that made it to print.</p>
+          <p className="font-hand text-[20px] text-accent">ideas that made it to print</p>
         </div>
 
         <ol className="flex flex-col border-t border-line">
@@ -23,7 +23,7 @@ export default function Publications() {
                 </p>
               </div>
               {p.link ? (
-                <a href={p.link} className="text-sm font-semibold text-accent hover:text-accent-dark">
+                <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-accent hover:text-accent-dark">
                   Read paper ↗
                 </a>
               ) : (

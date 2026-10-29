@@ -29,17 +29,17 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-0.5">
-          <a href={profile.links.github} aria-label="GitHub" className="hidden p-2 text-ink-soft hover:text-accent sm:inline-flex">
+          <a href={profile.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hidden p-2 text-ink-soft hover:text-accent sm:inline-flex">
             <GitHubIcon />
           </a>
-          <a href={profile.links.linkedin} aria-label="LinkedIn" className="hidden p-2 text-ink-soft hover:text-accent sm:inline-flex">
+          <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hidden p-2 text-ink-soft hover:text-accent sm:inline-flex">
             <LinkedInIcon />
           </a>
           <a href={`mailto:${profile.email}`} aria-label="Email" className="hidden p-2 text-ink-soft hover:text-accent sm:inline-flex">
             <MailIcon />
           </a>
           <a
-            href={profile.links.resume}
+            href={profile.links.resume} target="_blank" rel="noopener noreferrer"
             className="ml-2 inline-flex min-h-10 items-center rounded-full border border-line-strong bg-card px-4 text-sm text-ink no-underline hover:border-accent"
           >
             Résumé ↓
