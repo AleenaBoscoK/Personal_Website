@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { profile } from "@/content/site";
 
 export default function Hero() {
@@ -55,9 +56,16 @@ export default function Hero() {
 
         {/* On phones: a small headshot beside the ticket. From tablet up: big headshot with the ticket below. */}
         <div className="flex w-full items-center gap-4 sm:max-w-[320px] sm:flex-[1_1_260px] sm:flex-col sm:items-stretch sm:gap-3.5">
-          {/* Swap this box for: <Image src="/headshot.jpg" ... /> once you have the photo */}
-          <div className="flex aspect-[4/5] w-24 shrink-0 items-center justify-center rounded-2xl bg-mist text-xs text-muted sm:w-auto sm:text-sm">
-            [Headshot]
+          {/* Headshot: the file lives at public/headshot.jpg */}
+          <div className="relative aspect-[4/5] w-24 shrink-0 overflow-hidden rounded-2xl bg-mist sm:w-auto">
+            <Image
+              src="/headshot.jpg"
+              alt={`${profile.firstName} ${profile.lastName}`}
+              fill
+              priority
+              sizes="(min-width: 640px) 320px, 96px"
+              className="object-cover"
+            />
           </div>
 
           {/* Ticket stub */}
