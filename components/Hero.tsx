@@ -64,7 +64,7 @@ export default function Hero() {
               fill
               priority
               sizes="(min-width: 640px) 320px, 96px"
-              className="object-cover"
+              className="object-cover object-[65%_center]"
             />
           </div>
 
