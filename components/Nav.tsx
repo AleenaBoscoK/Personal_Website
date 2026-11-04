@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FlightProgress from "@/components/FlightProgress";
 import MobileMenu from "@/components/MobileMenu";
+import ResumeMenu from "@/components/ResumeMenu";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "@/components/Icons";
 import { nav, profile } from "@/content/site";
 
@@ -36,12 +37,7 @@ export default function Nav() {
           <a href={`mailto:${profile.email}`} aria-label="Email" className="hidden p-2 text-ink-soft hover:text-accent xl:inline-flex">
             <MailIcon />
           </a>
-          <a
-            href={profile.links.resume} target="_blank" rel="noopener noreferrer"
-            className="inline-flex min-h-10 xl:ml-2 items-center rounded-full border border-line-strong bg-card px-4 text-sm text-ink no-underline hover:border-accent"
-          >
-            Résumé ↓
-          </a>
+          <ResumeMenu />
           <MobileMenu />
         </div>
       </div>

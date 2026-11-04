@@ -2,6 +2,7 @@ import CopyEmail from "@/components/CopyEmail";
 import DepartureBoard from "@/components/DepartureBoard";
 import { DocIcon, GitHubIcon, LinkedInIcon } from "@/components/Icons";
 import SectionHeading from "@/components/SectionHeading";
+import { resumes } from "@/content/resumes";
 import { profile } from "@/content/site";
 
 export default function Contact() {
@@ -36,10 +37,17 @@ export default function Contact() {
             <GitHubIcon />
             GitHub
           </a>
-          <a href={profile.links.resume} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 px-3 text-[15px] font-medium text-ink hover:text-accent">
-            <DocIcon />
-            Download résumé
-          </a>
+          {resumes.map((r) => (
+            <a
+              key={r.file}
+              href={r.file}
+              download={r.saveAs}
+              className="inline-flex min-h-12 items-center gap-2 px-3 text-[15px] font-medium text-ink hover:text-accent"
+            >
+              <DocIcon />
+              {r.short} résumé ↓
+            </a>
+          ))}
         </div>
       </div>
     </section>
