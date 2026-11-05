@@ -36,7 +36,12 @@ export default function Hero() {
             {profile.pitch}
           </p>
 
-          <p className="text-[15px] leading-relaxed text-muted">{profile.subline}</p>
+          <p className="max-w-xl text-[15px] leading-relaxed text-muted">{profile.subline}</p>
+
+          <div className="flex max-w-xl flex-col gap-1">
+            <span className="font-mono text-[11px] tracking-[0.14em] text-accent">RESEARCH INTERESTS</span>
+            <p className="text-[15px] leading-relaxed text-ink-soft">{profile.interests.join(" · ")}</p>
+          </div>
 
           <div className="mt-1 flex flex-wrap gap-3">
             <a

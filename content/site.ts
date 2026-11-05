@@ -10,9 +10,10 @@ export const profile = {
   lastName: "Bosco Kurumthottam",
   status: "Graduating May 2027 · Open to SWE, ML & AI roles",
   pitch:
-    "I build retrieval and machine-learning systems, and I study what makes their answers complete.",
+    "I'm a software and ML engineer who builds retrieval systems, and researches what makes their answers complete.",
   subline:
-    "M.S. Computer Science, NYU Tandon · RAG research with Prof. Torsten Suel",
+    "At NYU Tandon, I work with Prof. Torsten Suel on coverage-aware retrieval-augmented generation: choosing documents that together answer every part of a question, then helping the LLM use the evidence it skipped.",
+  interests: ["Retrieval-augmented generation", "Information retrieval", "LLM reasoning & evaluation", "Applied ML"],
   email: "aleenabosco@gmail.com",
   links: {
     github: "https://github.com/AleenaBoscoK",
