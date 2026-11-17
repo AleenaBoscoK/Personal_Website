@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aleena Bosco Kurumthottam · Personal Website
 
-## Getting Started
+**Live site:** [aleena-bosco.vercel.app](https://aleena-bosco.vercel.app)
 
-First, run the development server:
+My portfolio site for recruiters and collaborators: experience, research, projects, publications and skills in one place. The design follows my journey from **Abu Dhabi → Chennai → New York**, with boarding-pass and field-notebook touches, but sections are organised by type so they're quick to scan.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## What's on the site
+
+- **Journey:** school, undergraduate and master's stops, each with grades and a link to that city's chapter
+- **Experience logbook:** collapsible entries on a ruled notebook page
+- **Research:** my coverage-aware RAG work at NYU Tandon, shown as a question, four method steps and before/after results
+- **Projects as postcards:** a short summary on the front, the full story on the back, with filters for LLMs & agents, Software and Applied ML
+- **Publications, skills and certifications**
+- **Résumé menu:** software engineering and ML versions
+- **Off the clock:** clubs and leadership roles from each city, shown as postcards
+- **Contact:** a departure board, LinkedIn, GitHub and a copy-email button
+
+## Built with
+
+- [Next.js 16](https://nextjs.org) (App Router) and React 19
+- TypeScript
+- Tailwind CSS v4
+- Fonts via `next/font`: Plus Jakarta Sans, Inter, JetBrains Mono and Barlow Condensed
+- Deployed on [Vercel](https://vercel.com); every push to `main` deploys automatically
+
+## How it's organised
+
+All of the site's text lives in one file, [`content/site.ts`](content/site.ts), so updating content never means touching the components.
+
+```
+app/           pages (home and /off-the-clock) and global styles
+components/    one component per section (Hero, Journey, Experience, Research, Projects, ...)
+content/       site text (site.ts) and résumé list (resumes.ts)
+public/        headshot and résumé PDFs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run it locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Requires Node.js 20 or later.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Then open [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[LinkedIn](https://www.linkedin.com/in/aleena-bosco/) · [GitHub](https://github.com/AleenaBoscoK) · aleenabosco@gmail.com
