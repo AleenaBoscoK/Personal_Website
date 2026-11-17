@@ -34,17 +34,6 @@ content/       site text (site.ts) and résumé list (resumes.ts)
 public/        headshot and résumé PDFs
 ```
 
-## Run it locally
-
-Requires Node.js 20 or later.
-
-```bash
-npm install
-npm run dev
-```
-
-Then open [http://localhost:3000](http://localhost:3000).
-
 ## Contact
 
 [LinkedIn](https://www.linkedin.com/in/aleena-bosco/) · [GitHub](https://github.com/AleenaBoscoK) · aleenabosco@gmail.com
