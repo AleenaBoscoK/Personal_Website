@@ -210,7 +210,7 @@ export const experience: Job[] = [
     place: "Chennai, India · Hybrid",
     tags: ["Published"],
     bullets: [
-      "Benchmarked 3 CNN architectures on 1,457 dermatology images across 4 severity grades; CenterNet reached 79.45% accuracy, about 7% above YOLO baselines.",
+      "Benchmarked 3 CNN architectures (CenterNet, VGG-16 and SqueezeNet) on 1,457 dermatology images across 4 severity grades; CenterNet was the most accurate at 79.45%.",
       "Validated robustness with 5-fold cross-validation on a class-imbalanced dataset; co-authored the resulting paper in Connection Science (Taylor & Francis).",
     ],
   },
@@ -221,8 +221,8 @@ export const experience: Job[] = [
     place: "Chennai, India · Hybrid",
     tags: ["Published"],
     bullets: [
-      "Built an app that tracks expiry dates on documents and products using Google ML Kit's OCR engine, with Redux and MongoDB.",
-      "Generated recommendations from the extracted data; the work was published at an IEEE conference (2025).",
+      "Built an app that tracks expiry dates on documents and products using Google ML Kit's OCR engine, on a team using Redux and MongoDB.",
+      "Generated recommendations from the extracted data; the work was published at the IEEE CINS 2024 conference.",
     ],
   },
   {
@@ -233,7 +233,7 @@ export const experience: Job[] = [
     tags: ["Teaching"],
     bullets: [
       "Tutored students who needed extra support, identified through internal exam results, alongside the course faculty.",
-      "Created study materials and led online doubt sessions on ER modelling, SQL, normalisation, indexing, transactions and query optimisation.",
+      "Created study materials and led online Q&A sessions on ER modelling, SQL, normalisation, indexing, transactions and query optimisation.",
     ],
   },
   {
@@ -324,8 +324,8 @@ export const projects: Project[] = [
     badge: "In progress · course project",
     summary: "A live web app that maps NYC taxi demand, fares and trip times by zone, day and hour.",
     description:
-      "My team's Software Engineering project (CS-GY 6063), built in Scrum sprints and live on AWS. It turns 11.2M cleaned NYC taxi trips from March–May 2026 into a demand heatmap, fare ranges, typical trip times and the cheapest and fastest hours for a route. I built the trip-import pipeline (11.9M rows into 1.3M route statistics, in one transaction and safe to re-run), the taxi-zone map shapes and the fare-range API. User accounts are next.",
-    stack: ["Django", "PostgreSQL", "Leaflet", "pandas", "AWS"],
+      "My team's Software Engineering project (CS-GY 6063), built in Scrum sprints with code reviews and a Travis CI/CD pipeline that deploys to AWS. It turns 11.2M cleaned NYC taxi trips from March–May 2026 into a demand heatmap, fare ranges, typical trip times and the cheapest and fastest hours for a route. I built the trip-import pipeline (11.9M rows into 1.3M route statistics, in one transaction and safe to re-run), the taxi-zone map shapes, the fare-range API, side-by-side zone comparisons, day plans with calendar export and rider messaging, with 500+ tests across my features.",
+    stack: ["Django", "PostgreSQL", "Leaflet", "pandas", "AWS", "Travis CI"],
     github: "https://github.com/gcivil-nyu-org/team5-mon-fall26",
     live: "http://taxiscope-env.eba-gfaktp8z.us-east-2.elasticbeanstalk.com/",
   },
@@ -376,9 +376,9 @@ export const projects: Project[] = [
     category: "ml",
     when: "Jul — Nov 2024",
     badge: "Published · IEEE Access",
-    summary: "A rolling-window ARIMA with 71.9% lower forecast error than an attention-LSTM.",
+    summary: "A rolling-window ARIMA that beat LSTM and Prophet models at forecasting solar power.",
     description:
-      "A rolling 30-day-window ARIMA that cut RMSE by 71.9% against an attention-LSTM and 60.6% against Prophet, on PVGIS-SARAH and ERA5 data from two regions.",
+      "Compared five models (LSTM, attention-LSTM, ARIMA, rolling-window ARIMA and Prophet), trained on ERA5 data and tested on SARAH satellite data. An ARIMA(1,1,1) retrained on a 30-day sliding window did best: RMSE 11.19, MAPE 7.2% and R² 0.93.",
     stack: ["Python", "ARIMA", "LSTM", "Prophet"],
     github: "https://github.com/tejaswini8213/Solar-forecasting",
   },
